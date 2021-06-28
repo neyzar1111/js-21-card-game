@@ -1,0 +1,89 @@
+body {
+  box-sizing: border-box;
+  background: #22c1c3;
+  background: linear-gradient(0deg, #22c1c3 0%, #9bd184 100%);
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+h4 {
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.1em;
+}
+
+button {
+  padding: 6px;
+  text-transform: capitalize;
+  min-width: 6em;
+  margin: 10px auto;
+}
+
+header {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.startBtn {
+  display: block;
+  margin: 10px auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+main #userSection {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+main #userSection .user-cards {
+  background-color: darkgreen;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+main #userSection .user-cards .card {
+  height: 200px;
+  width: 100px;
+  margin: 2px;
+  background-color: beige;
+  font-size: 2em;
+}
+main #compSection {
+  margin-top: 2em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+main #compSection .cards {
+  background-color: darkgreen;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+main #compSection .cards .card {
+  height: 200px;
+  width: 100px;
+  margin: 2px;
+  background-color: beige;
+  font-size: 2em;
+}
+
+/*# sourceMappingURL=sass.css.map */

@@ -1,0 +1,101 @@
+body{
+  box-sizing: border-box;
+  //background-image: url("https://media.istockphoto.com/photos/cards-on-green-felt-casino-table-background-picture-id1125958849?k=6&m=1125958849&s=170667a&w=0&h=JBdYf-BkLbMRoRxP9oUF-u4JcQA1vqhpFK5yiiBSbog=");
+  //background-repeat: no-repeat;
+  //background-position: center;
+  //background-size: cover;
+
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(155,209,132,1) 100%);
+}
+$margin-general: 10px;
+$padding-general: 10px;
+.hs{
+  $margin-general: 10px;
+  $padding-general: 10px;
+}
+
+h1{
+  font-size: 2em;
+}
+h2{
+ font-size: 1.6em;
+}
+h3{
+  font-size: 1.5em;
+  margin: $margin-general;
+}
+h4{
+  font-size: 1.3em;
+  @extend .hs;
+}
+h5{
+  font-size: 1.1em;
+}
+//h1,h2,h3,h4,h5,h6{
+//  @extend .h;
+//}
+button{
+  padding: 6px;
+  text-transform: capitalize;
+  min-width: 6em;
+  margin: 10px auto;
+
+}
+header{
+  text-align: center;
+  padding-top: 20px;
+}
+.startBtn{
+  display: block;
+  margin: 10px auto;
+}
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  #userSection{
+    width: 65%;
+    //border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    .user-cards{
+      background-color: darkgreen;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .card{
+        height: 200px;
+        width: 100px;
+        margin: 2px;
+        background-color: beige;
+        font-size: 2em;
+
+      }
+    }
+  }
+  #compSection{
+    margin-top: 2em;
+    width:50%;
+    //border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    .cards{
+      background-color: darkgreen;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .card{
+        height: 200px;
+        width: 100px;
+        margin: 2px;
+        background-color: beige;
+        font-size: 2em;
+      }
+    }
+
+  }
+}

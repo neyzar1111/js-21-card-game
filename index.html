@@ -4,11 +4,58 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/sass.css">
     <title>21-card-game</title>
 </head>
 <body>
+    <header>
+        <h1>21-card-game</h1>
+    </header>
+    <button class="startBtn">Start</button>
+    <main>
+        <section id="userSection">
+            <h3>You</h3>
+            <div class="cards user-cards "  id="cards">
 
-<scipt src="js/script.js"></scipt>
+                <div class="card card1 user-card" id="userCard" >
+                </div>
+
+                <div class="card card2 user-card">
+                </div>
+
+            </div>
+            <template id="temp">
+                <div class="card card2 user-card">
+                </div>
+            </template>
+           <div>
+               <button class="pushCardBtn">Push card</button>
+               <button class="compare">compare</button>
+               <button class="playAgain" style="display: none">Play again</button>
+           </div>
+            <h4 class="total-score">Your cards value</h4>
+        </section>
+        <section id="compSection">
+            <h3>COMPUTER</h3>
+            <div class="cards" id="containerCompCards">
+                <div class="card comp-card" style="display: none" >
+
+                </div>
+                <div class="card comp-card" style="display: none">
+
+                </div>
+
+
+            </div>
+            <template id="temp2">
+                <div class="card  comp-card" style="display: none">
+                </div>
+            </template>
+            <h4 class="comp-total-score" style="display: none">Computer cards value</h4>
+        </section>
+    </main>
+
+<script src="js/script.js"></script>
 </body>
 </html>
