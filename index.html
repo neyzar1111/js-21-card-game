@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/sass.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <title>21-card-game</title>
 </head>
 <body>
@@ -20,19 +24,19 @@
 
             <div class="cards user-cards "  id="cards">
 
-                <div class="card card1 user-card" id="userCard" >
+                <div class="animate__animated animate__backInLeft card card1 user-card " id="userCard" >
                     <p class="card-value"></p>
                     <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
 
-                <div class="card card2 user-card">
+                <div class="animate__animated animate__backInLeft card card2 user-card">
                     <p class="card-value"></p>
                     <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
 
             </div>
             <template id="temp">
-                <div class="card card2 user-card">
+                <div class="animate__animated animate__backInLeft card card2 user-card">
                     <p class="card-value"></p>
                     <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
@@ -51,12 +55,12 @@
         <section id="compSection">
             <h3>COMPUTER</h3>
             <div class="cards" id="containerCompCards">
-                <div class="card comp-card" style="display: none" >
+                <div class="animate__animated animate__backInLeft card comp-card" style="display: none" >
                     <p class = "compCard-value"></p>
                     <img class="comp-img" src="#" alt="card" width="50px" height="50px">
 
                 </div>
-                <div class="card comp-card" style="display: none">
+                <div class="animate__animated animate__backInLeft card comp-card" style="display: none">
                     <p class = "compCard-value"></p>
                     <img class="comp-img" src="#" alt="card" width="50px" height="50px">
 
@@ -65,7 +69,7 @@
 
             </div>
             <template id="temp2">
-                <div class="card  comp-card" style="display: none">
+                <div class="animate__animated animate__backInLeft card  comp-card" style="display: none">
                     <p class = "compCard-value"></p>
                     <img class="comp-img" src="#" alt="card" width="50px" height="50px">
                 </div>
@@ -75,5 +79,6 @@
     </main>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>
