@@ -1,4 +1,5 @@
- const  cards = [
+let cardDeck = [];
+const  cards = [
     {
         "card": "2",
         "value": 2,
@@ -53,129 +54,176 @@
      },
 ]
 
- let compTotalScore;
- let userTotalScore;
-  const startBtn = document.querySelector(".startBtn");
- startBtn.addEventListener('click',function(){
-     startBtn.style.display = "none"
-     const containerUserCards = document.querySelector("#cards");
-     const userCards = document.querySelectorAll(".user-card");
-     const userScorePlace = document.querySelector(".total-score");
-     const pushCardBtn = document.querySelector(".pushCardBtn");
-     const playAgainBtn = document.querySelector(".playAgain");
-     const containerCompCards = document.querySelector("#containerCompCards");
-     const compCards = document.querySelectorAll('.comp-card');
-     const compScorePlace = document.querySelector(".comp-total-score")
-
-     let chosenCards = [];
-     let userScore = [];
-     let chosenCardsComp = [];
-     let compScore = [];
-
-     containerUserCards.style.display = "block";
-     containerUserCards.style.display = "flex";
-
-     const randomCards = ()=>Math.floor(Math.random() * cards.length);
-
-     function firstCardsAndGetScore(playerscards, cardsChosen, playerScore){
-         playerscards.forEach(e=>e.innerHTML = cards[randomCards()].card);
-         for(let item of playerscards){
-             cardsChosen.push(cards.find(card => card.card === item.innerHTML));
-         }
-         for(let i = 0; i < cardsChosen.length; i++){
-             playerScore.push(cardsChosen[i].value);
-         }
-         let getTotalPlayerScore = ()=> playerScore.reduce((accumulator, element) => {
-             return accumulator + element;
-         }, 0);
-         return getTotalPlayerScore();
+ let cards1 = cards.map((e,i)=>{
+     return {
+         "card":e.card,
+         "value":e.value,
+         "img": 'images/heart.png'
      }
-     const getTotalScore = (playerScore)=> playerScore.reduce((accumulator, element) => {
-         return accumulator + element;
-     }, 0);
-     const setScoresOnScreen =(element, playersTotalScore)=>{
-         element.innerHTML = playersTotalScore;
-     }
-     function addNewCard(template, container, playerCards, playerScore,playerTotalScore,placetoShow){
-         let temp = document.querySelector(template);
-         let clone = temp.content.cloneNode(true);
-         container.appendChild(clone);
-         const cardsP = document.querySelectorAll(playerCards);
-         console.log(cardsP)
-         const pushNewCard =()=>cardsP[cardsP.length -1].innerHTML = cards[randomCards()].card
-         pushNewCard();
-         let newCard = cardsP[cardsP.length -1];
-         let newCardValue = (cards.find(card => card.card === newCard.innerHTML).value);
-         playerScore.push(newCardValue);
-         playerTotalScore = getTotalScore(playerScore);
-         console.log(playerTotalScore)
-         setScoresOnScreen(placetoShow,playerTotalScore);
+ });
 
+ let cards2 = cards.map((e,i)=>{
+     return {
+         "card":e.card,
+         "value":e.value,
+         "img": 'images/diamond.png'
      }
+ })
 
-     // for user
-    function userFunction(){
-        userTotalScore = firstCardsAndGetScore(userCards,chosenCards,userScore);
-        setScoresOnScreen(userScorePlace, userTotalScore);
-        pushCardBtn.onclick = function(){
-            addNewCard("#temp", containerUserCards, ".user-card", userScore,userTotalScore, userScorePlace);
-        }
+ let cards3 = cards.map((e,i)=>{
+     return {
+         "card":e.card,
+         "value":e.value,
+         "img": 'images/spade.png'
+     }
+ })
+
+ let cards4 = cards.map((e,i)=>{
+     return {
+         "card":e.card,
+         "value":e.value,
+         "img": 'images/clubs.png'
+     }
+ })
+
+ for(let i = 0; i< cards1.length; i++){
+     cardDeck.push(cards1[i]);
+     cardDeck.push(cards2[i]);
+     cardDeck.push(cards3[i]);
+     cardDeck.push(cards4[i]);
+
+ }
+//user elem
+const containerUserCards = document.querySelector("#cards");
+const userCardValue = document.querySelectorAll(".card-value");
+const userCardImg = document.querySelectorAll(".user-img");
+const userScorePlace = document.querySelector(".total-score");
+
+const pushCardBtn = document.querySelector(".pushCardBtn");
+const playAgainBtn = document.querySelector(".playAgain");
+const notifyUser = document.querySelector(".alertUser");
+const compareButton = document.querySelector(".compare");
+// comp elem
+const containerCompCards = document.querySelector("#containerCompCards");
+const compCardValue = document.querySelectorAll(".compCard-value");
+const compCardImg = document.querySelectorAll(".comp-img");
+const compScorePlace = document.querySelector(".comp-total-score")
+
+let chosenCards = [];
+let chosenCardsComp = [];
+
+// functions
+function getTotalValue(selectedCards){
+    let totalUser =  selectedCards.reduce((acc, curr)=>{
+        return acc + curr.value;
+    },0)
+    return totalUser;
+}
+function shuffle(){
+    return cardDeck.sort(() => Math.random() - 0.5);
+}
+shuffle()
+function firstCards(playerCards, selectedCards, playerScorePlace, cardImgSrc){
+    playerCards.forEach((e,i)=>{
+        selectedCards.push(cardDeck.pop())
+        e.innerHTML = selectedCards[i].card;
+    })
+    cardImgSrc.forEach((e,i)=>{
+        e.attributes.src.nodeValue = selectedCards[i].img;
+    })
+
+    let playerTotalScore =  getTotalValue(selectedCards);
+    playerScorePlace.innerHTML = playerTotalScore;
+}
+
+function addNewCard(template, containerToAppend, selectedCards, playerCards,playerCardImgSel, playerScorePlace){
+    let temp = document.querySelector(template);
+    let clone = temp.content.cloneNode(true);
+    containerToAppend.appendChild(clone);
+    selectedCards.push(cardDeck.pop());
+    let cardsP = document.querySelectorAll(playerCards);
+    cardsP[cardsP.length - 1].innerHTML = selectedCards[selectedCards.length - 1].card;
+    let cardImgSrc = document.querySelectorAll(playerCardImgSel);
+    cardImgSrc[cardImgSrc.length-1].attributes.src.nodeValue = selectedCards[selectedCards.length - 1].img;
+    let playerTotalScore =  getTotalValue(selectedCards);
+    playerScorePlace.innerHTML = playerTotalScore;
+
+}
+// start game
+// user
+function userFunction(){
+    firstCards(userCardValue, chosenCards, userScorePlace, userCardImg);
+    pushCardBtn.onclick = function(){
+        addNewCard("#temp", containerUserCards, chosenCards, ".card-value", '.user-img',userScorePlace)
     }
-     userFunction();
-     // <<< for computer >>>
-     function compFunction(){
-         compTotalScore = firstCardsAndGetScore(compCards,chosenCardsComp,compScore);
-         setScoresOnScreen(compScorePlace,compTotalScore);
-         document.querySelector(".compare").addEventListener("click", function(){
-             const compCards = document.querySelectorAll('.comp-card');
-             compCards.forEach(e=>e.style.display ="block")
-             pushCardBtn.style.display = "none";
-             compScorePlace.style.display = "block";
-             playAgainBtn.style.display = "block";
-             containerCompCards.style.display = "block";
-             containerCompCards.style.display = "flex";
 
+}
+userFunction()
+// comp
+function compFunction(){
+    firstCards(compCardValue,chosenCardsComp,compScorePlace,compCardImg);
 
+    compareButton.addEventListener("click", function(){
+        compareButton.style.display = "none";
+        const compCards = document.querySelectorAll('.comp-card');
+        compCards.forEach(e=>e.style.display ="block")
+        pushCardBtn.style.display = "none";
+        compScorePlace.style.display = "block";
+        playAgainBtn.style.display = "block";
+        containerCompCards.style.display = "block";
+        containerCompCards.style.display = "flex";
+        if(getTotalValue(chosenCardsComp)<=14){
+            addNewCard("#temp2", containerCompCards, chosenCardsComp, ".compCard-value", '.comp-img',compScorePlace)
+        }
+        function alertUser(){
+            if(getTotalValue(chosenCards) > 21 ){
+                notifyUser.innerHTML = "You have more than 21. You lost "
+            } else if(getTotalValue(chosenCardsComp) > 21&& getTotalValue(chosenCards)<=21){
+                notifyUser.innerHTML = "You win!!!! "
+            }
+            else if(getTotalValue(chosenCards)  <= 21 && getTotalValue(chosenCards) > getTotalValue(chosenCardsComp) ){
+                notifyUser.innerHTML = "You win!!!! "
+            } else if(getTotalValue(chosenCards)  <= 21 && getTotalValue(chosenCards) < getTotalValue(chosenCardsComp)){
+                notifyUser.innerHTML = "You Lost!!!! "
+            }
+        }
+        alertUser()
+    })
 
-         })
-         let compCardsLength = document.querySelectorAll('.comp-card').length;
-         if( compCardsLength === 2 && compTotalScore < 16){
-             console.log(compCardsLength)
-             console.log("length-3,<16")
-             addNewCard("#temp2", containerCompCards, ".comp-card", compScore,compTotalScore,compScorePlace);
-         }
-     }
-     compFunction();
-     // function checkingT(){
-     //     console.log(userCards);
-     // }
-     // checkingT()
+}
+compFunction()
+//  play again
+playAgainBtn.addEventListener("click", function(){
+    const compCards = document.querySelectorAll(".comp-card");
+    const userCards = document.querySelectorAll(".user-card");
+    pushCardBtn.style.display = "block";
+    compareButton.style.display = "block";
+    containerCompCards.style.display = "none";
+    compScorePlace.style.display = "none";
 
-     playAgainBtn.addEventListener("click", function(){
-         pushCardBtn.style.display = "block";
-         const compCards = document.querySelectorAll(".comp-card");
-         containerCompCards.style.display = "none";
-         compScorePlace.style.display = "none";
-         // playAgainBt
+    notifyUser.innerHTML  = "";
+    chosenCards.map((e,i)=>{
+        cardDeck.push(e);
+    })
+    chosenCardsComp.map((e,i)=>{
+        cardDeck.push(e);
+    })
+    shuffle()
 
-         userTotalScore = 0;
-        chosenCards = [];
-        userScore = [];
-        chosenCardsComp = [];
-        compScore = [];
-        let userCards = document.querySelectorAll(".user-card");
-        userCards.forEach((e,i )=>{
-             if(i > 1){
-                e.remove();
-             }
-        })
-         userFunction();
+    chosenCards = [];
+    chosenCardsComp = [];
+    userCards.forEach((e,i )=>{
+        if(i > 1){
+            e.remove();
+        }
+    })
+    userFunction();
 
-         compCards.forEach((e,i)=>{
-             if(i > 1){
-                 e.remove();
-             }
-         })
-         compFunction();
-     })
+    compCards.forEach((e,i)=>{
+        if(i > 1){
+            e.remove();
+        }
+    })
+    compFunction();
+
  })

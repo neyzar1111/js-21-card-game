@@ -12,37 +12,53 @@
     <header>
         <h1>21-card-game</h1>
     </header>
-    <button class="startBtn">Start</button>
     <main>
         <section id="userSection">
             <h3>You</h3>
+
+
+
             <div class="cards user-cards "  id="cards">
 
                 <div class="card card1 user-card" id="userCard" >
+                    <p class="card-value"></p>
+                    <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
 
                 <div class="card card2 user-card">
+                    <p class="card-value"></p>
+                    <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
 
             </div>
             <template id="temp">
                 <div class="card card2 user-card">
+                    <p class="card-value"></p>
+                    <img class="user-img" src="#" alt="card" width="50px" height="50px">
                 </div>
             </template>
-           <div>
+           <div id="userButtons">
                <button class="pushCardBtn">Push card</button>
                <button class="compare">compare</button>
-               <button class="playAgain" style="display: none">Play again</button>
            </div>
             <h4 class="total-score">Your cards value</h4>
+            <div class="alertUser">
+
+            </div>
         </section>
+
+        <button class="playAgain" style="display: none">Play again</button>
         <section id="compSection">
             <h3>COMPUTER</h3>
             <div class="cards" id="containerCompCards">
                 <div class="card comp-card" style="display: none" >
+                    <p class = "compCard-value"></p>
+                    <img class="comp-img" src="#" alt="card" width="50px" height="50px">
 
                 </div>
                 <div class="card comp-card" style="display: none">
+                    <p class = "compCard-value"></p>
+                    <img class="comp-img" src="#" alt="card" width="50px" height="50px">
 
                 </div>
 
@@ -50,6 +66,8 @@
             </div>
             <template id="temp2">
                 <div class="card  comp-card" style="display: none">
+                    <p class = "compCard-value"></p>
+                    <img class="comp-img" src="#" alt="card" width="50px" height="50px">
                 </div>
             </template>
             <h4 class="comp-total-score" style="display: none">Computer cards value</h4>

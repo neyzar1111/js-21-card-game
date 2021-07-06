@@ -66,6 +66,9 @@ main #userSection .user-cards .card {
   background-color: beige;
   font-size: 2em;
 }
+main #userSection #userButtons {
+  display: flex;
+}
 main #compSection {
   margin-top: 2em;
   width: 50%;
